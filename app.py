@@ -41,12 +41,14 @@ def __main__():
                 
                 # View DCM Information
                 elif menu == 2:
+                    filename = str(input("Input File Name : "))
                     ds = viewDcm.loadFile(filename, 2)
                     print("View DCM Information")
                     print(ds)
 
                 # View Pixel Data
                 elif menu == 3:
+                    filename = str(input("Input File Name : "))
                     result = recontrol.convertPixel(filename)
                     print(result)
                 
