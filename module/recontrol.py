@@ -43,8 +43,9 @@ def convertPixel(filename, type='b'):
     else:
         ds = dcmread(paths + filename + '.dcm')
         f = open(paths + filename + '.json', 'w')
-        f.write(str(ds.to_json_dict()))
-        f.write(str({'base64' : base64.b64encode(ds.pixel_array)}))
+        f.write(str(ds.to_json()))
+        f.write(str(','))
+        f.write(str({'base64' : base64.b64encode(ds.pixel_array)}).replace("'", '"'))
         f.close()
 
     return ds
