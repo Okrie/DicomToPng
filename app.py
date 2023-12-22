@@ -15,7 +15,8 @@ def viewMenu():
     print("== 1. View DCM")
     print("== 2. View DCM Information")
     print("== 3. View pixel Data")
-    print("== 4. Save DCM")
+    print("== 4. Save DCM (binary)")
+    print("== 5. Save DCM (json)")
     print("== 99. Exit")
     print("=======================================================")
 
@@ -57,6 +58,11 @@ def __main__():
                     filename = str(input("Input File Name : "))
                     result = viewDcm.loadFile(filename, 1)
                     viewDcm.saveTopng(filename, result)
+
+                # Save DCM
+                elif menu == 5:
+                    filename = str(input("Input File Name : "))
+                    result = recontrol.convertPixel(filename, 'json')
                 
                 # Exit Program
                 elif menu == 99:
