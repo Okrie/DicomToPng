@@ -1,6 +1,6 @@
 """
-    Dicom Image To Png Files and Headers by Okrie
-    View DCM 
+    ### Dicom Image To Png Files and Headers by Okrie
+    #### View DCM 
     Author : Okrie
     Version : 0.1
     site : https://github.com/Okrie/DicomToPng
@@ -12,29 +12,41 @@ import matplotlib.pyplot as plt
 from pydicom import dcmread, multival
 import numpy as np
 
-"""
-    View Dicom Image by MatPlotLib
-"""
+# View Image
 def viewDCM(filename, arr):
-    # View Image
+    """
+    ### View Dicom Image by MatPlotLib
+    """
+
     plt.title(filename)
     plt.imshow(arr, cmap='gray')
     plt.show()
 
 
-"""
-    Dcm Image to Png
-    require : filename, arr
-    arr : dicom pixel_data
-    default dpi : 1000
-""" 
-def saveTopng(filename, arr, dpi=500):
+# Save Pixel_data to Image File
+def saveTopng(filename, arr, dpi=500, type='png'):
+    """
+    ### Dcm Image to Png    
+    require : filename, arr    
+    arr : dicom pixel_data    
+    default dpi : 1000    
+    default type : png    
+    """ 
+
     plt.axis('off')
     plt.imshow(arr, cmap='gray')
-    plt.savefig(f'{filename}.png', dpi=dpi, transparent=True)
+    plt.savefig(f'{filename}.{type}', dpi=dpi, transparent=True)
 
 
+# Load pixel_data with Dicom Header
 def loadFile(filename, i):
+    """
+    ### DCM Convert pixel_data      
+    require : fileName, i      
+    i : 1 (pixel_data), 2 (Dicom Header)     
+    information : Check Header data and convert pixel_data
+    """
+
     ds = dcmread(filename + '.dcm', force=True)
     if ds is None:
         raise Exception('File Exits')
