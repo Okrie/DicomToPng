@@ -58,7 +58,7 @@ def __main__():
                 
                 # Exit Program
                 elif menu == 99:
-                    break
+                    exit()
 
                 else:
                     pass
