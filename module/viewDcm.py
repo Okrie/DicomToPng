@@ -95,5 +95,4 @@ def loadFile(filename, i):
     if i == 1:
         return pixel_array
     elif i == 2:
-        ds.save_as(filename+'.svg')
         return ds

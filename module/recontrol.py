@@ -28,7 +28,7 @@ def convertPixel(filename):
         ### convertPixel
     """
 
-    paths = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '\\'
+    paths = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/'
 
     f = open(paths+filename+'.dcm', 'rb')
     tempdata = bytes(f.read())
