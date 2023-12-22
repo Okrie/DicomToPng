@@ -17,6 +17,7 @@ def Recontrol(co, arrdType, arrShape):
         ### Recontrol
         Reshape Array
     """
+    
     convertArray = np.frombuffer(co, dtype=arrdType)
     arrRes = np.reshape(convertArray, arrShape)
     return arrRes
@@ -26,7 +27,8 @@ def convertPixel(filename):
     """
         ### convertPixel
     """
-    paths = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
+    paths = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '\\'
 
     f = open(paths+filename+'.dcm', 'rb')
     tempdata = bytes(f.read())

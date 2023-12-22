@@ -15,6 +15,7 @@ def viewMenu():
     print("== 1. View DCM")
     print("== 2. View DCM Information")
     print("== 3. View pixel Data")
+    print("== 4. Save DCM")
     print("== 99. Exit")
     print("=======================================================")
 
@@ -22,40 +23,53 @@ def viewMenu():
 def __main__():
     menu = 0
     while True:
-        # Print Menu
-        if menu == 0:
-            try:
-                viewMenu()
-                menu = int(input("Input Menu Number : "))
-            except Exception as e:
+        while True:
+            # Print Menu
+            if menu == 0:
+                try:
+                    viewMenu()
+                    menu = int(input("Input Menu Number : "))
+                except Exception as e:
+                    
+                    print("Retry Input Number")
+            elif menu != 0:
+                # View DCM
+                if menu == 1:
+                    filename = str(input("Input File Name : "))
+                    result = viewDcm.loadFile(filename, 1)
+                    viewDcm.viewDCM(filename, result)
                 
-                print("Retry Input Number")
+                # View DCM Information
+                elif menu == 2:
+                    ds = viewDcm.loadFile(filename, 2)
+                    print("View DCM Information")
+                    print(ds)
 
-        # View DCM
-        elif menu == 1:
-            filename = str(input("Input File Name : "))
-            viewDcm.loadFile(filename, 1)
-            viewDcm.viewDCM(filename, result)
-            viewDcm.saveTopng(filename, result)
-        
-        # View DCM Information
-        elif menu == 2:
-            ds = viewDcm.loadFile(filename, 2)
-            print("View DCM Information")
-            print(ds)
+                # View Pixel Data
+                elif menu == 3:
+                    result = recontrol.convertPixel(filename)
+                    print(result)
+                
+                # Save DCM
+                elif menu == 4:
+                    filename = str(input("Input File Name : "))
+                    result = viewDcm.loadFile(filename, 1)
+                    viewDcm.saveTopng(filename, result)
+                
+                else:
+                    pass
+                
+                print('Done')
+                menu = 0
+                break
 
-        # View Pixel Data
-        elif menu == 8:
-            result = recontrol.convertPixel(filename)
-            print(result)
+            # Exit Program
+            elif menu == 99:
+                break
 
-        # Exit Program
-        elif menu == 99:
-            break
-
-        else:
-            print("Wrong Menu Number")
-            menu = 0
+            else:
+                print("Wrong Menu Number")
+                menu = 0
 
 if __name__ == '__main__':
     __main__()
