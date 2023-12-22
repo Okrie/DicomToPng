@@ -56,15 +56,15 @@ def __main__():
                     result = viewDcm.loadFile(filename, 1)
                     viewDcm.saveTopng(filename, result)
                 
+                # Exit Program
+                elif menu == 99:
+                    break
+
                 else:
                     pass
                 
                 print('Done')
                 menu = 0
-                break
-
-            # Exit Program
-            elif menu == 99:
                 break
 
             else:
