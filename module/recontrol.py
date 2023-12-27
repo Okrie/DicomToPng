@@ -43,9 +43,21 @@ def convertPixel(filename, type='b'):
     else:
         ds = dcmread(paths + filename + '.dcm')
         f = open(paths + filename + '.json', 'w')
-        f.write(str(ds.to_json()))
-        f.write(str(','))
-        f.write(str({'base64' : base64.b64encode(ds.pixel_array)}).replace("'", '"'))
+
+        # JSON 형식으로 변경 key : value
+        keys = list(ds.keys())
+        ds_keys = []
+        result = '{'
+
+        for v in keys:
+            ds_keys.append(str(v).replace('(', '0x').replace(', ', '').replace(')', ''))
+
+        for i, v in enumerate(ds):
+            if i < len(keys) - 1:
+                result = result + f'"{ds[ds_keys[i]].name}" : "{ds[ds_keys[i]].value}" , '
+            else:
+                result = result + f'"{ds[ds_keys[i]].name}" : "{base64.b64encode(ds[ds_keys[i]].value)}"'
+        f.write(str(result) + "}")
         f.close()
 
     return ds
